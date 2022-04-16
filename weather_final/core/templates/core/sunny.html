@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>Weather-by-nikhil</title>
+    <link href="{% static 'core/style-sunny.css' %}" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4e29dad735.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="weather-app">
+    <div class="container">
+    <h3 class="brand">nikhil.weather</h3>
+    {% if result.rel %}
+    <h2 style="background-color:red; padding:5px; border-radius: 2px;">Please enter a valid city name</h2>
+    {% endif %}
+    <div>
+    <h1 class="temp">{{result.temp_now}}&#176;</h1>
+    <div class="city-time">
+    <h1 class="name">{{result.region}}</h1>
+    <small>
+     <span class="time">{{result.hours}}:{{result.minutes}}</span>
+     -
+     <span class="date">{{result.weekday}} {{result.mon}} {{result.day}}</span>
+    </small>
+    </div>
+    <div class="weather">
+       <img src="{% static 'core/icons/white-sun.png' %}"  class="icon" alt="icon" width="50" height="50" />
+       <span class="condition">Clear</span>
+    </div>
+    </div>
+    </div>
+    <div class="panel">
+     <form id="locationinput" method="GET">
+            <input type="text" class="search" id="city" name="city" placeholder="Search Location..."/>
+            <button type="submit" class="submit">
+                <i class="fas fa-search"></i>
+            </button>
+    </form>
+    <ul class="cities">
+     <li class="city">New york</li>
+     <li class="city">Paris</li>
+     <li class="city">Tokyo</li>
+    </ul>
+    <ul class="details">
+    <h4>Weather Details</h4>
+    <li>
+    <span>Description</span>
+    <span class="cloud">{{result.weather_now}}</span>
+    </li>
+    <li>
+        <span>Humidity</span>
+        <span class="humidity">{{result.humid}}%</span>
+    </li>
+    <li>
+        <span>Wind</span>
+        <span class="wind">{{result.winder}} km/h</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+</body>
+</html>
